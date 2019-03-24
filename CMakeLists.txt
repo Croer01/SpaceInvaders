@@ -3,7 +3,7 @@ project(SpaceInvaders)
 
 set(CMAKE_CXX_STANDARD 11)
 
-add_subdirectory(src)
+find_package(SDL2 CONFIG REQUIRED)
 
 set(GAME_SOURCES
         main.cpp
@@ -55,5 +55,4 @@ ADD_CUSTOM_TARGET(copyAssets
         COMMAND ${CMAKE_COMMAND} -E copy_directory ${CMAKE_CURRENT_SOURCE_DIR}/assets ${CMAKE_CURRENT_BINARY_DIR}/assets
         )
 
-enable_testing()
-add_subdirectory(test)
+add_subdirectory(GameEngine)
