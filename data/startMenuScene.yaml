@@ -10,6 +10,6 @@ prototypes:
   - prototype: Alien1
     position: [76,121]
   - prototype: StartGameText
-    position: [58,165]
+    position: [55,175]
   - prototype: MuteDescriptionText
-    position: [34,224]
+    position: [31,224]

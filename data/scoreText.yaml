@@ -6,3 +6,10 @@ components:
     font: assets\\fonts\\slkscr.ttf
     fontSize: 48
   - type: HUDComponent
+children:
+  - position: [75, 0]
+    components:
+      - type: TextComponent
+        font: assets\\fonts\\slkscr.ttf
+        fontSize: 48
+      - type: HighScoreLoaderComponent

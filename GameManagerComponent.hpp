@@ -25,6 +25,7 @@ class GameManagerComponent : public GameEngine::geComponentInstantiable<GameMana
     bool playerKilled_;
 
     void lostLive();
+    void updateMaxScore();
 public:
     void init() override;
 
@@ -32,6 +33,7 @@ public:
 
     void onEvent(const GameEngine::Subject<PlayerEvents> &target, const PlayerEvents &event, void *args) override;
 
+    void endGame();
 protected:
     GameEngine::PropertySetBase *configureProperties() override;
 

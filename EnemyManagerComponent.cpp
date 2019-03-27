@@ -8,6 +8,7 @@
 #include "EnemyManagerComponent.hpp"
 #include "EnemyComponent.hpp"
 #include "MotherShipComponent.hpp"
+#include "GameManagerComponent.hpp"
 
 void EnemyManagerComponent::init() {
     currentSpeed_ = speed_;
@@ -59,8 +60,11 @@ void EnemyManagerComponent::Update(float elapsedTime) {
     float max = screen.virtualWidth();
     float bottom = screen.virtualHeight();
 
-    if(currentPosition_.y + boundingBoxMax_.y >= bottom)
-        gameObject()->game().changeScene("StartMenu");
+    if(currentPosition_.y + boundingBoxMax_.y >= bottom) {
+        gameObject()->game().findObjectByNameInCurrentScene("GameManager")->
+                             getComponent<GameManagerComponent>().lock()->
+                             endGame();
+    }
 
     if ((currentPosition_.x + boundingBoxMin_.x <= min && currentSpeed_ < 0) || (currentPosition_.x + boundingBoxMax_.x >= max && currentSpeed_ > 0)) {
         currentSpeed_ = -currentSpeed_;

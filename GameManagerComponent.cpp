@@ -3,6 +3,7 @@
 //
 
 #include <game-engine/InputManager.hpp>
+#include <game-engine/geIO.hpp>
 #include "GameManagerComponent.hpp"
 
 void GameManagerComponent::init() {
@@ -60,7 +61,7 @@ void GameManagerComponent::Update(float elapsedTime) {
     if(playerKilled_){
         if(playerKilledTime_ <= playerKilledTimeAcumulator_) {
             if(currentLives_ < 0) {
-                gameObject()->game().changeScene("StartMenu");
+                endGame();
             } else {
                 player_.lock()->restore();
                 playerKilled_ = false;
@@ -81,4 +82,23 @@ void GameManagerComponent::lives(const int &numLives) {
 
 int GameManagerComponent::lives() const {
     return lives_;
+}
+
+void GameManagerComponent::updateMaxScore() {
+    if(auto enemyManager = enemyManager_.lock()){
+        int score = enemyManager->getScore();
+        GameEngine::geIO io;
+        const GameEngine::geDataRef &loadedData = io.load("score.save");
+
+        if(!loadedData->hasValue("score") || score > loadedData->getInt("score")){
+            GameEngine::geDataWriter writer(loadedData);
+            writer.writeInt("score", score);
+            io.save("score.save", loadedData);
+        }
+    }
+}
+
+void GameManagerComponent::endGame() {
+    updateMaxScore();
+    gameObject()->game().changeScene("StartMenu");
 }

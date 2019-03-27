@@ -1,6 +1,8 @@
 scale: [0.16,0.16]
 components:
   - type: TextComponent
-    text: "space    invaders\n\n      = ??? points\n\n      = 30 points\n\n      = 20 points\n\n      = 10 points"
+    # The last 3 "new lines" and the space are to add lines before HighScoreLoaderComponent sets the max score
+    text: "space    invaders\n\n      = ??? points\n\n      = 30 points\n\n      = 20 points\n\n      = 10 points\n\n\n "
     font: assets\\fonts\\slkscr.ttf
     fontSize: 48
+  - type: HighScoreLoaderComponent

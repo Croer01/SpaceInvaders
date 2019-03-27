@@ -20,7 +20,8 @@ set(GAME_SOURCES
         BlinkTextComponent.cpp
         EnemyExplosionComponent.cpp
         GameManagerComponent.cpp
-        ShelterComponent.cpp)
+        ShelterComponent.cpp
+        HighScoreLoaderComponent.cpp)
 
 # auto-generated files
 file(GLOB COMPONENTS_REGISTERED_HEADERS "${CMAKE_CURRENT_SOURCE_DIR}/*.hpp")
